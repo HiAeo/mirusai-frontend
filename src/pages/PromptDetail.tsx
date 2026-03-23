@@ -10,6 +10,11 @@ const mockData = [
   { date: '2024-01-03', visScore: 68, sentiment: 70 },
 ]
 
+const mockCitations = [
+  { domain: 'example.com', count: 5 },
+  { domain: 'another.com', count: 3 },
+]
+
 export const PromptDetail: React.FC = () => {
   const { t } = useLanguage()
   const { id } = useParams()
@@ -59,14 +64,12 @@ export const PromptDetail: React.FC = () => {
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold text-primary mb-4">{t('prompt.citations')}</h2>
           <div className="space-y-2">
-            <div className="flex justify-between items-center p-3 border-b">
-              <span>example.com</span>
-              <span className="text-secondary font-semibold">5</span>
-            </div>
-            <div className="flex justify-between items-center p-3 border-b">
-              <span>another.com</span>
-              <span className="text-secondary font-semibold">3</span>
-            </div>
+            {mockCitations.map((citation, idx) => (
+              <div key={idx} className="flex justify-between items-center p-3 border-b">
+                <span>{citation.domain}</span>
+                <span className="text-secondary font-semibold">{citation.count}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
